@@ -1,14 +1,23 @@
+import selenium
+from bs4 import BeautifulSoup
+import requests
 from selenium import webdriver
 
+from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+#from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait as WA
+from selenium.webdriver.support import expected_conditions as EC
 import time
+service = Service()
+options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(service=Service("/Users/manla/Desktop/driver/chromedriver"))
 #actions = ActionChains(driver)
 def website(job,min_salary):
     links = []
     driver.get("https://www.indeed.com/")
-    location = driver.find_element(By.XPATH, '//*[@id="text-input-what"]')
+    location = driver.find_element(By.XPATH, '//*[@id="label-text-input-what"]')
     location.send_keys(job)
     find_job = driver.find_element(By.CSS_SELECTOR, '.yosegi-InlineWhatWhere-primaryButton')
     find_job.click()
@@ -67,5 +76,5 @@ def sheets(a):
         driver.get("https://docs.google.com/forms/d/e/1FAIpQLScAMSOxyohRvJwPqIFt0H3rd3G6ieM7JyMphMYe8dh4Of4pRw/viewform?usp=sf_link")
     driver.get("https://docs.google.com/spreadsheets/d/1kl1qp3Thj0ompyVqLPApW5x-cQPsIevpWx5XWmP3VV4/edit?resourcekey#gid=247262278")
     time.sleep(60)
-website("Software Engineer",120000)
+website("Lawyer",50000)
 #https://docs.google.com/forms/d/e/1FAIpQLScAMSOxyohRvJwPqIFt0H3rd3G6ieM7JyMphMYe8dh4Of4pRw/viewform?usp=sf_link
